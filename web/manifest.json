@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "name": "apilearning",
     "short_name": "apilearning",
+=======
+    "name": "apitutorial",
+    "short_name": "apitutorial",
+>>>>>>> 380670d87cb5d4c7df6cf69892aa5abb785371ba
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

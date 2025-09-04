@@ -1,10 +1,18 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
+<<<<<<< HEAD
 project(apilearning LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "apilearning")
+=======
+project(apitutorial LANGUAGES CXX)
+
+# The name of the executable created for the application. Change this to change
+# the on-disk name of your application.
+set(BINARY_NAME "apitutorial")
+>>>>>>> 380670d87cb5d4c7df6cf69892aa5abb785371ba
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

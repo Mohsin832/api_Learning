@@ -27,7 +27,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(project);
   Win32Window::Point origin(10, 10);
   Win32Window::Size size(1280, 720);
+<<<<<<< HEAD
   if (!window.Create(L"apilearning", origin, size)) {
+=======
+  if (!window.Create(L"apitutorial", origin, size)) {
+>>>>>>> 380670d87cb5d4c7df6cf69892aa5abb785371ba
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);
