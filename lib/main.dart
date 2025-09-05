@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:apilearning/apiapp.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
