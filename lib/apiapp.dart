@@ -1,7 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:apilearning/models/postmodel.dart';
 
 class Apiapp extends StatefulWidget {
   const Apiapp({super.key});
@@ -11,49 +8,29 @@ class Apiapp extends StatefulWidget {
 }
 
 class _ApiappState extends State<Apiapp> {
-  List<PostModel> postList = [];
+  int counter = 0;
+  @override
+  void initState() {
+    super.initState();
+    loopcounter();
+  }
 
-  Future<List<PostModel>> getPostApi() async {
-    final response = await http.get(
-      Uri.parse("https://jsonplaceholder.typicode.com/posts"),
-    );
+  loopcounter() async {
+    for (var i = 0; i < 7; i++) {
+      await Future.delayed(Duration(seconds: 3));
 
-    var data = jsonDecode(response.body.toString());
-
-    if (response.statusCode == 200) {
-      for (var i in data) {
-        postList.add(PostModel.fromJson(i));
-      }
-      return postList;
-    } else {
-      return postList;
+      setState(() {
+        counter = i;
+      });
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("api learning")),
-      body: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder(
-              future: getPostApi(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
-                } else {
-                  return ListView.builder(
-                    itemCount: postList.length,
-                    itemBuilder: (context, index) {
-                      return Text(index.toString());
-                    },
-                  );
-                }
-              },
-            ),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          children: [Text(counter.toString(), style: TextStyle(fontSize: 20))],
+        ),
       ),
     );
   }
