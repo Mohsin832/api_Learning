@@ -8,28 +8,52 @@ class Apiapp extends StatefulWidget {
 }
 
 class _ApiappState extends State<Apiapp> {
-  int counter = 0;
-  @override
-  void initState() {
-    super.initState();
-    loopcounter();
+  Future<int> futureCounter(number) async {
+    await Future.delayed(Duration(seconds: 2));
+    return number + number;
   }
 
-  loopcounter() async {
-    for (var i = 0; i < 7; i++) {
-      await Future.delayed(Duration(seconds: 3));
-
-      setState(() {
-        counter = i;
-      });
+  Stream<int> streamCounter(counter) async* {
+    while (true) {
+      await Future.delayed(Duration(seconds: 2));
+      yield counter++;
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
-          children: [Text(counter.toString(), style: TextStyle(fontSize: 20))],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FutureBuilder(
+              future: futureCounter(10),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    "Future  ${snapshot.data.toString()}",
+                    style: TextStyle(fontSize: 20),
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
+            StreamBuilder(
+              stream: streamCounter(1),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    "Stream ${snapshot.data.toString()}",
+                    style: TextStyle(fontSize: 20),
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
